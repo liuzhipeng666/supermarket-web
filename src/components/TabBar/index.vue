@@ -1,12 +1,15 @@
 <template>
-  <div class="tab-bar">
-      <a href="javascript:;"
-        v-for="(item, index) in hotList"
+  <div class="tab-bar" :class="{
+    [layout]: true
+  }">
+      <nav class="hot-list">
+        <a href="javascript:;"
+        v-for="(item, index) in tabs"
         :key="index"
         :class="{active: activeIndex === index}"
-        class="hot-list"
         @click="(change(index))"
-      >{{item.text}}</a>
+        >{{item[tabName]}}</a>
+      </nav>
   </div>
 </template>
 
@@ -14,7 +17,20 @@
 export default {
   name: 'tab-bar',
   props: {
-     hotList:Array 
+     tabs: Array,
+     tabName: {
+       type: String,
+       default: 'text'
+     },
+     layout: {
+      type: String,
+      default: 'row'
+     }
+  },
+  watch: {
+    tabs () {
+      this.activeIndex = 0
+    }
   },
   data () {
     return {
@@ -33,9 +49,11 @@ export default {
 <style lang="scss" scoped>
 .tab-bar{
     @include wh(100%, 0.92rem);
-    @include flex(row, center, space-between);
     overflow:auto;
-   .hot-list{
+    .hot-list{
+      @include wh(auto, 100%);
+      @include flex(row, center, space-between);
+      a{
        @include wh(auto, 0.92rem);
        padding:0 0.2rem;
        line-height: 0.92rem;
@@ -48,6 +66,14 @@ export default {
            font-size: 0.32rem;
            font-weight: bold;
        }
+      }
+    }
+   &.column {
+     @include wh(1.72rem, 100%);
+      .hot-list{
+       @include wh(100%, auto);
+       @include flex(column);
+     }
    } 
 }
 </style>

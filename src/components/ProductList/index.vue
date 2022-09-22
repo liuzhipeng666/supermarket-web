@@ -1,8 +1,11 @@
 <template>
   <div class="product-list">
-      <dl class="product-item"
+      <router-link
+        class="product-item"
         v-for="(item, index) in productLost"
         :key="index"
+        :to="`/detail/${item.id}`"
+        tag="dl"
       >
         <dt><img :src="item.img" alt=""></dt>
         <dd>
@@ -19,7 +22,7 @@
             <i class="iconfont icon-pinglun pinglun"></i>
           </footer>
         </dd>
-      </dl>
+      </router-link>
   </div>
 </template>
 

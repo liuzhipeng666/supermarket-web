@@ -54,7 +54,6 @@ export default {
         this.mallList = res.data.data.mall_nav
         this.hotList = res.data.data.hot_nav
         this.productLost = res.data.data.product.slice(0, 10)
-        console.log(res, this.productLost[10]);
         })
     },
     // async fetchProductList () {
@@ -63,7 +62,7 @@ export default {
     //     page_szie: 10
     //   })
     //   this.productLost = res.data.data
-    //   console.log(this.productLost);
+    //   console.log(res.data.data);
     // },
     navchange (index, item) {
       index,
